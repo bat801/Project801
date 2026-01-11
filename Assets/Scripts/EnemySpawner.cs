@@ -26,6 +26,12 @@ public class EnemySpawner : MonoBehaviour
         {
             SpawnEnemy();
             timer = 0;
+
+            // Постепенно уменьшаем время между спавном, но не ниже 0.3 сек
+            if (spawnRate > 0.3f)
+            {
+                spawnRate -= 0.01f;
+            }
         }
     }
 
