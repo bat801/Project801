@@ -36,6 +36,20 @@ public class Enemy : MonoBehaviour
     // Этот метод вызывается Unity автоматически, когда что-то входит в триггер
     void OnTriggerEnter2D(Collider2D other)
     {
+        // Проверка на игрока
+        if (other.CompareTag("Player"))
+        {
+            // Ищем у объекта, в который врезались компонент PlayerHealth
+            PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(10f); // Наносим 10 урона
+            }
+
+            Die(); // Враг исчезает после удара
+        }
+
         // Проверяем, есть ли у объекта, который в нас врезался, тег "Bullet"
         if (other.CompareTag("Bullet"))
         {
