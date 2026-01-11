@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public float health = 10f;
     public float moveSpeed = 3f; // Скорость врага
+    public GameObject deathEffectPrefab;
 
     private Rigidbody2D rb;
     private Transform player; // Ссылка на трансформ игрока
@@ -69,7 +70,14 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        // Позже добавим здесь эффекты или опыт
+        Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
+        // Ищем GameManager на сцене и вызываем метод добавления очков
+        GameManager gm = FindObjectOfType<GameManager>();
+        if (gm != null)
+        {
+            gm.AddScore(1); // +1 за каждого убитого
+        }
+
         Destroy(gameObject);
     }
 }
