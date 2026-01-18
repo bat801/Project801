@@ -8,10 +8,25 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public TextMeshProUGUI scoreText; // Ссылка на текст в UI
 
-    // Метод, который мы будем вызывать из скрипта врага
-    public void AddScore(int amount)
+    private int totalCoins;
+
+    void Start()
     {
-        score += amount;
-        scoreText.text = "Врагов уничтожено: " + score;
+        totalCoins = PlayerPrefs.GetInt("TotalCoins", 0);
+        UpdateUI(); // Метод, который обновит текст на экране
+    }
+
+    // Метод, который мы будем вызывать из скрипта врага
+    public void AddCoins(int amount)
+    {
+        totalCoins += amount;
+        PlayerPrefs.SetInt("TotalCoins", totalCoins); // Сохраняем
+        PlayerPrefs.Save(); // Принудительно записываем на диск
+        UpdateUI();
+    }
+
+    void UpdateUI()
+    {
+        scoreText.text = "Монеты: " + totalCoins;
     }
 }

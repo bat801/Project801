@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public float health = 10f;
     public float moveSpeed = 3f; // Скорость врага
+    public int coinValue = 1; // Сколько монет дает враг
     public GameObject deathEffectPrefab;
 
     private Rigidbody2D rb;
@@ -77,7 +78,7 @@ public class Enemy : MonoBehaviour
         GameManager gm = FindObjectOfType<GameManager>();
         if (gm != null)
         {
-            gm.AddScore(1); // +1 за каждого убитого
+            gm.AddCoins(coinValue); // Передаем именно значение этого врага. + Монеты за убийство этого врага
         }
 
         Destroy(gameObject);
