@@ -5,6 +5,6 @@ public class MenuManager : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("SampleScene"); // Имя своей основной сцены
+        SceneManager.LoadScene("Space"); // Имя своей основной сцены
     }
 }

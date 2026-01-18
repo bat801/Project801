@@ -29,8 +29,10 @@ public class Enemy : MonoBehaviour
             rb.velocity = direction * moveSpeed;
 
             // ƒополнительно: поворачиваем треугольник "носом" к игроку
+            // ¬ычисл€ем угол (в радианах, затем переводим в градусы)
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            rb.rotation = angle;
+            // ¬ычитаем 90 градусов, чтобы компенсировать разницу между "право" и "верх"
+            rb.rotation = angle - 90f;
         }
     }
 
