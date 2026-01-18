@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab; // Кого спавним
+    public GameObject[] enemyPrefabs; // Кого спавним
     public float spawnRate = 2f; // Раз в сколько секунд
     public float spawnDistance = 10f; // Дистанция от игрока, где появится враг
 
@@ -45,7 +45,10 @@ public class EnemySpawner : MonoBehaviour
         // Вычисляем позицию: позиция игрока + направление + дистанция
         Vector3 spawnPos = (Vector2)player.position + (spawnDirection * spawnDistance);
 
-        // Создаем врага
-        Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        // Выбираем случайный индекс из массива
+        int randomIndex = Random.Range(0, enemyPrefabs.Length);
+
+        // Создаем случайного врага
+        Instantiate(enemyPrefabs[randomIndex], spawnPos, Quaternion.identity);
     }
 }
